@@ -1,0 +1,57 @@
+@model QL_Ban_Hang.Models.HomeIndexViewModel
+@{
+    ViewData["Title"] = "ASM5 - Thống kê chủ đề";
+}
+
+<section class="page-shell">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">Yêu cầu ASM5</p>
+            <h1>Thống kê số lượng sách theo chủ đề</h1>
+        </div>
+        <a class="add-link" href="#danh-sach-sach">Thêm mới</a>
+    </div>
+
+    <div class="store-layout">
+        <aside class="category-panel">
+            <h2>Chủ đề</h2>
+            <ul class="category-list">
+                @foreach (var category in Model.Categories)
+                {
+                    <li>
+                        <span>@category.Category</span>
+                        <span>(@category.Count)</span>
+                    </li>
+                }
+            </ul>
+        </aside>
+
+        <section class="book-grid-section" id="danh-sach-sach">
+            <div class="book-grid">
+                @foreach (var book in Model.Books)
+                {
+                    <article class="book-card">
+                        <div class="book-card__header">
+                            <h3>@book.Title</h3>
+                            <span class="book-card__edit">Edit</span>
+                        </div>
+
+                        <div class="book-meta">
+                            <p><strong>Tác giả:</strong> @book.Author</p>
+                            <p><strong>Thể loại:</strong> @book.Category</p>
+                        </div>
+
+                        <div class="book-cover-frame">
+                            <img src="@book.ImageUrl" alt="@book.Title" />
+                        </div>
+
+                        <div class="book-card__actions">
+                            <a class="btn btn-outline-secondary btn-sm" asp-action="Details" asp-route-id="@book.Id">Chi tiết</a>
+                            <button class="btn btn-success btn-sm" type="button">Xóa</button>
+                        </div>
+                    </article>
+                }
+            </div>
+        </section>
+    </div>
+</section>

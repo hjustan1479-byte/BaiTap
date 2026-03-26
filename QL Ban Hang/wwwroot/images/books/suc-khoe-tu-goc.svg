@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="390" viewBox="0 0 260 390">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+  </defs>
+  <rect width="260" height="390" rx="8" fill="url(#g)"/>
+  <rect x="18" y="18" width="224" height="354" rx="4" fill="none" stroke="#f0fdf4" stroke-opacity=".4"/>
+  <circle cx="130" cy="140" r="58" fill="#f0fdf4" opacity=".95"/>
+  <path d="M130 102 C118 82, 92 86, 88 110 C84 132, 108 148, 130 170 C152 148, 176 132, 172 110 C168 86, 142 82, 130 102 Z" fill="#16a34a"/>
+  <text x="130" y="250" text-anchor="middle" font-size="32" font-weight="700" font-family="Arial, sans-serif" fill="#f0fdf4">SUC KHOE</text>
+  <text x="130" y="288" text-anchor="middle" font-size="32" font-weight="700" font-family="Arial, sans-serif" fill="#f0fdf4">TU GOC</text>
+  <text x="130" y="340" text-anchor="middle" font-size="15" font-family="Arial, sans-serif" fill="#dcfce7">CHAM SOC CHU DONG</text>
+</svg>

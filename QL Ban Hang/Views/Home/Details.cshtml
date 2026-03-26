@@ -1,0 +1,80 @@
+@model QL_Ban_Hang.Models.Book
+@{
+    ViewData["Title"] = "Chi tiết cuốn sách";
+    var discountPercent = Model.OriginalPrice <= 0
+        ? 0
+        : Math.Round((Model.OriginalPrice - Model.Price) / Model.OriginalPrice * 100);
+}
+
+<section class="page-shell">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">Yêu cầu ASM5</p>
+            <h1>Chi tiết cuốn sách</h1>
+        </div>
+        <a class="add-link" asp-action="Index">Quay lại</a>
+    </div>
+
+    <div class="details-layout">
+        <h2 class="details-title">THÔNG TIN CHI TIẾT SÁCH</h2>
+
+        <div class="details-panel">
+            <div class="details-cover">
+                <img src="@Model.ImageUrl" alt="@Model.Title" />
+            </div>
+
+            <div class="details-content">
+                <h2>@Model.Title</h2>
+
+                <div class="details-specs">
+                    <div><strong>Nhà cung cấp:</strong> NXB Trẻ</div>
+                    <div><strong>Tác giả:</strong> @Model.Author</div>
+                    <div><strong>Nhà xuất bản:</strong> @Model.Publisher</div>
+                    <div><strong>Chủ đề:</strong> @Model.Category</div>
+                </div>
+
+                <div class="rating-line">
+                    <span class="rating-stars">★★★★★</span>
+                    <span class="rating-count">(@Model.ReviewCount đánh giá)</span>
+                </div>
+
+                <div class="price-line">
+                    <span class="price-current">@Model.Price.ToString("N0") đ</span>
+                    <span class="price-original">@Model.OriginalPrice.ToString("N0") đ</span>
+                    <span class="discount-badge">-@discountPercent%</span>
+                </div>
+
+                <div class="delivery-line">
+                    <div class="delivery-item">
+                        <small>Thời gian giao hàng</small>
+                        <strong>Giao hàng nhanh</strong>
+                    </div>
+                    <div class="delivery-item">
+                        <small>Chính sách đổi trả</small>
+                        <span>Đổi trả sản phẩm trong 30 ngày</span>
+                    </div>
+                    <div class="delivery-item">
+                        <small>Hỗ trợ</small>
+                        <span>Xem thêm</span>
+                    </div>
+                </div>
+
+                <div class="quantity-line">
+                    <strong>Số lượng:</strong>
+                    <div class="quantity-box">
+                        <button type="button">-</button>
+                        <span>1</span>
+                        <button type="button">+</button>
+                    </div>
+                </div>
+
+                <p class="details-description">@Model.Description</p>
+
+                <div class="details-actions">
+                    <button class="btn btn-outline-danger" type="button">Thêm vào giỏ hàng</button>
+                    <button class="btn btn-danger" type="button">Mua ngay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

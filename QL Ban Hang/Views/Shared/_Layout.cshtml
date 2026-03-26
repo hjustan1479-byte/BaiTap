@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - QL Ban Hang</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/QL_Ban_Hang.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar__inner">
+            <a class="topbar__brand" asp-area="" asp-controller="Home" asp-action="Index">Trang Chủ</a>
+            <nav class="topbar__nav">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Đăng Ký</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Đăng nhập</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Giỏ hàng</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="app-shell">
+        @RenderBody()
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 - Lập trình Web</p>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
