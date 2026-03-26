@@ -1,53 +1,78 @@
 @model QL_Ban_Hang.Models.HomeIndexViewModel
 @{
-    ViewData["Title"] = "ASM5 - Thống kê chủ đề";
+    ViewData["Title"] = "Trang chủ";
 }
 
 <section class="page-shell">
     <div class="page-heading">
         <div>
-            <p class="eyebrow">Yêu cầu ASM5</p>
-            <h1>Thống kê số lượng sách theo chủ đề</h1>
+            <p class="eyebrow">Bài tập TMĐT</p>
+            <h1>Danh sách product theo category</h1>
+            <p class="page-subtitle">
+                @if (!string.IsNullOrWhiteSpace(Model.SelectedCategoryName))
+                {
+                    <span>Đang lọc theo chủ đề: <strong>@Model.SelectedCategoryName</strong></span>
+                }
+                else
+                {
+                    <span>Hiển thị toàn bộ product trong hệ thống.</span>
+                }
+            </p>
         </div>
-        <a class="add-link" href="#danh-sach-sach">Thêm mới</a>
     </div>
+
+    @if (TempData["SuccessMessage"] is string successMessage)
+    {
+        <div class="alert alert-success custom-alert">@successMessage</div>
+    }
 
     <div class="store-layout">
         <aside class="category-panel">
-            <h2>Chủ đề</h2>
+            <div class="section-title-row">
+                <h2>Category</h2>
+                <a asp-action="Index">Tất cả</a>
+            </div>
+
             <ul class="category-list">
                 @foreach (var category in Model.Categories)
                 {
-                    <li>
-                        <span>@category.Category</span>
-                        <span>(@category.Count)</span>
+                    var isActive = Model.SelectedCategoryId == category.Id;
+                    <li class="@(isActive ? "active" : null)">
+                        <a asp-action="Index" asp-route-categoryId="@category.Id">
+                            <span>@category.Name</span>
+                            <span>(@category.ProductCount)</span>
+                        </a>
                     </li>
                 }
             </ul>
         </aside>
 
-        <section class="book-grid-section" id="danh-sach-sach">
+        <section class="book-grid-section">
+            <div class="section-title-row">
+                <h2>Products</h2>
+                <span>@Model.Products.Count sản phẩm</span>
+            </div>
+
             <div class="book-grid">
-                @foreach (var book in Model.Books)
+                @foreach (var product in Model.Products)
                 {
                     <article class="book-card">
                         <div class="book-card__header">
-                            <h3>@book.Title</h3>
-                            <span class="book-card__edit">Edit</span>
+                            <h3>@product.Name</h3>
+                            <span class="book-card__edit">@product.Category?.Name</span>
                         </div>
 
                         <div class="book-meta">
-                            <p><strong>Tác giả:</strong> @book.Author</p>
-                            <p><strong>Thể loại:</strong> @book.Category</p>
+                            <p><strong>Tác giả/Thương hiệu:</strong> @product.Author</p>
+                            <p><strong>Giá bán:</strong> @product.Price.ToString("N0") đ</p>
                         </div>
 
                         <div class="book-cover-frame">
-                            <img src="@book.ImageUrl" alt="@book.Title" />
+                            <img src="@product.ImageUrl" alt="@product.Name" />
                         </div>
 
                         <div class="book-card__actions">
-                            <a class="btn btn-outline-secondary btn-sm" asp-action="Details" asp-route-id="@book.Id">Chi tiết</a>
-                            <button class="btn btn-success btn-sm" type="button">Xóa</button>
+                            <a class="btn btn-outline-secondary btn-sm" asp-action="Details" asp-route-id="@product.Id">Chi tiết</a>
                         </div>
                     </article>
                 }

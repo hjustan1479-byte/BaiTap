@@ -1,0 +1,48 @@
+@model QL_Ban_Hang.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<section class="auth-shell">
+    <div class="auth-card">
+        <p class="eyebrow">Identity</p>
+        <h1>Đăng nhập hệ thống</h1>
+        <p class="auth-note">
+            Tài khoản mẫu đã seed sẵn:
+            <strong>admin / 123456</strong> và <strong>member / 123456</strong>.
+        </p>
+
+        <form asp-action="Login" method="post" class="auth-form">
+            <input asp-for="ReturnUrl" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
+
+            <div class="form-group">
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-check">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label"></label>
+            </div>
+
+            <button type="submit" class="btn btn-danger w-100">Đăng nhập</button>
+        </form>
+
+        <p class="auth-switch">
+            Chưa có tài khoản?
+            <a asp-action="Register">Đăng ký ngay</a>
+        </p>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

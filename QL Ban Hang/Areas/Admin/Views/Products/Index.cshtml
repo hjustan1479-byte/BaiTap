@@ -1,0 +1,52 @@
+@model IEnumerable<QL_Ban_Hang.Models.Product>
+@{
+    ViewData["Title"] = "Quản lý Product";
+}
+
+<section class="page-shell">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">Area Admin</p>
+            <h1>Quản lý product</h1>
+        </div>
+        <a class="btn btn-danger" asp-action="Create">Thêm product</a>
+    </div>
+
+    @if (TempData["SuccessMessage"] is string successMessage)
+    {
+        <div class="alert alert-success custom-alert">@successMessage</div>
+    }
+
+    <div class="admin-table-wrap">
+        <table class="table admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên product</th>
+                    <th>Category</th>
+                    <th>Giá bán</th>
+                    <th>Ảnh</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Category?.Name</td>
+                        <td>@item.Price.ToString("N0") đ</td>
+                        <td class="table-image-cell">
+                            <img class="table-image" src="@item.ImageUrl" alt="@item.Name" />
+                        </td>
+                        <td class="table-actions">
+                            <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

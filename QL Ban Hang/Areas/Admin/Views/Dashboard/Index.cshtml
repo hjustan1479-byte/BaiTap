@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<section class="page-shell">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">Area Admin</p>
+            <h1>Bảng điều khiển quản trị</h1>
+            <p class="page-subtitle">Chỉ tài khoản có role Admin mới truy cập được khu vực này.</p>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <span>Tổng category</span>
+            <strong>@ViewBag.CategoryCount</strong>
+        </div>
+        <div class="dashboard-card">
+            <span>Tổng product</span>
+            <strong>@ViewBag.ProductCount</strong>
+        </div>
+        <div class="dashboard-card">
+            <span>Tổng user</span>
+            <strong>@ViewBag.MemberCount</strong>
+        </div>
+    </div>
+
+    <div class="admin-actions">
+        <a class="btn btn-danger" asp-area="Admin" asp-controller="Products" asp-action="Index">Quản lý Product</a>
+        <a class="btn btn-outline-danger" asp-area="Admin" asp-controller="Categories" asp-action="Index">Quản lý Category</a>
+    </div>
+</section>

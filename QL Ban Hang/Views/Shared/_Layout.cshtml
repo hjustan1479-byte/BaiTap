@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - QL Ban Hang</title>
-    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/QL_Ban_Hang.styles.css" asp-append-version="true" />
@@ -12,11 +11,32 @@
 <body>
     <header class="topbar">
         <div class="topbar__inner">
-            <a class="topbar__brand" asp-area="" asp-controller="Home" asp-action="Index">Trang Chủ</a>
+            <a class="topbar__brand" asp-area="" asp-controller="Home" asp-action="Index">QL Ban Hang</a>
+
             <nav class="topbar__nav">
-                <a asp-area="" asp-controller="Home" asp-action="Index">Đăng Ký</a>
-                <a asp-area="" asp-controller="Home" asp-action="Index">Đăng nhập</a>
-                <a asp-area="" asp-controller="Home" asp-action="Index">Giỏ hàng</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <span class="topbar__welcome">Xin chào, @User.Identity.Name</span>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Admin</a>
+                        <a asp-area="Admin" asp-controller="Products" asp-action="Index">Quản lý Product</a>
+                        <a asp-area="Admin" asp-controller="Categories" asp-action="Index">Quản lý Category</a>
+                    }
+
+                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="logout-form">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="nav-button">Đăng xuất</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-area="" asp-controller="Account" asp-action="Register">Đăng ký</a>
+                    <a asp-area="" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+                }
             </nav>
         </div>
     </header>
@@ -26,7 +46,7 @@
     </main>
 
     <footer class="app-footer">
-        <p>&copy; 2026 - Lập trình Web</p>
+        <p>&copy; 2026 - ASP.NET Core MVC + Identity + SQL Server</p>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

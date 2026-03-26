@@ -1,0 +1,25 @@
+@model QL_Ban_Hang.Models.Category
+@{
+    ViewData["Title"] = "Xóa Category";
+}
+
+<section class="page-shell form-shell">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">Area Admin</p>
+            <h1>Xóa category</h1>
+        </div>
+    </div>
+
+    <div class="danger-box">
+        <p>Bạn đang chuẩn bị xóa category <strong>@Model.Name</strong>.</p>
+        <p>Hệ thống sẽ xóa luôn <strong>@ViewBag.ProductCount</strong> product thuộc category này.</p>
+        <p>Thao tác này chỉ dành cho Admin và không thể hoàn tác.</p>
+    </div>
+
+    <form asp-action="Delete" method="post" class="admin-actions">
+        <input type="hidden" asp-for="Id" />
+        <a class="btn btn-outline-secondary" asp-action="Index">Hủy</a>
+        <button type="submit" class="btn btn-danger">Xác nhận xóa category và product</button>
+    </form>
+</section>

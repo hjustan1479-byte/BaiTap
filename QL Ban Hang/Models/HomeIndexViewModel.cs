@@ -2,12 +2,15 @@ namespace QL_Ban_Hang.Models;
 
 public class HomeIndexViewModel
 {
-    public IReadOnlyList<Book> Books { get; init; } = [];
-    public IReadOnlyList<CategoryCountViewModel> Categories { get; init; } = [];
+    public IReadOnlyList<Product> Products { get; init; } = [];
+    public IReadOnlyList<CategorySummaryViewModel> Categories { get; init; } = [];
+    public int? SelectedCategoryId { get; init; }
+    public string? SelectedCategoryName { get; init; }
 }
 
-public class CategoryCountViewModel
+public class CategorySummaryViewModel
 {
-    public string Category { get; init; } = string.Empty;
-    public int Count { get; init; }
+    public int Id { get; init; }
+    public string Name { get; init; } = string.Empty;
+    public int ProductCount { get; init; }
 }

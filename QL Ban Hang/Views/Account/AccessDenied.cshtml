@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Không có quyền truy cập";
+}
+
+<section class="auth-shell">
+    <div class="auth-card">
+        <p class="eyebrow">Phân quyền</p>
+        <h1>Không có quyền truy cập</h1>
+        <p class="auth-note">
+            Khu vực này chỉ dành cho tài khoản có role <strong>Admin</strong>.
+        </p>
+        <div class="details-actions">
+            <a class="btn btn-outline-danger" asp-controller="Home" asp-action="Index">Về trang chủ</a>
+            <a class="btn btn-danger" asp-controller="Account" asp-action="Login">Đăng nhập lại</a>
+        </div>
+    </div>
+</section>
